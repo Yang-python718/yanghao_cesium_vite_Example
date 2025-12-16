@@ -1,0 +1,43 @@
+
+<script setup>
+import * as Cesium from "cesium";
+import { onMounted, onUnmounted, ref } from "vue";
+import Arrow from "@/utils/cesiumCtrl/drawArrow/drawPlot";
+
+const { viewer } = window;
+
+onMounted(() => {
+  viewer.scene.terrainProvider = new Cesium.CesiumTerrainProvider({
+    url: "http://data.marsgis.cn/terrain",
+  });
+
+  Arrow.disable();
+  Arrow.init(viewer);
+});
+
+const drawStraightArrow = () => {
+  Arrow.draw("straightArrow");
+};
+const drawAttackArrow = () => {
+  Arrow.draw("attackArrow");
+};
+const drawPincerArrow = () => {
+  Arrow.draw("pincerArrow");
+};
+const onClear = () => {
+  Arrow.clearAll();
+};
+onUnmounted(() => {
+  onClear();
+  viewer.scene.terrainProvider = new Cesium.EllipsoidTerrainProvider({});
+});
+</script>
+<template>
+  <operate-box>
+    <el-button type="primary" @click="drawStraightArrow">直线箭头</el-button>
+    <el-button type="primary" @click="drawAttackArrow">攻击箭头</el-button>
+    <el-button type="primary" @click="drawPincerArrow">钳击箭头</el-button>
+    <el-button type="primary" @click="onClear">清除</el-button>
+  </operate-box>
+</template>
+<style scoped lang="less"></style>
