@@ -7,6 +7,7 @@ import path from "path";
 import cesium from "vite-plugin-cesium";
 import viteCompression from "vite-plugin-compression";
 
+const baseRepoName = "yanghao_cesium_vite_Example";
 // import viteImagemin from "vite-plugin-imagemin";
 
 // https://vitejs.dev/config/
@@ -62,15 +63,15 @@ export default defineConfig(({ mode }) => {
               if (chunk.type === "chunk" && chunk.code) {
                 chunk.code = chunk.code.replace(
                   /\/json\//g,
-                  "/cesium-vue3-vite/json/"
+                  `/${baseRepoName}/json/`
                 );
                 chunk.code = chunk.code.replace(
                   /\/images\//g,
-                  "/cesium-vue3-vite/images/"
+                  `/${baseRepoName}/images/`
                 );
                 chunk.code = chunk.code.replace(
                   /\/models\//g,
-                  "/cesium-vue3-vite/models/"
+                  `/${baseRepoName}/models/`
                 );
               }
             }
