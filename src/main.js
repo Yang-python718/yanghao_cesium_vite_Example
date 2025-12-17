@@ -14,7 +14,8 @@ import "cesium/Build/Cesium/Widgets/widgets.css"
 
 
 const router = createRouter({
-  history: createWebHistory(),
+  // history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
